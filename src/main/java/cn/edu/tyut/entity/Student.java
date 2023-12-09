@@ -12,8 +12,7 @@ import org.springframework.web.context.annotation.SessionScope;
  * @Time 21:04
  * @Package_Name cn.edu.tyut.entity
  */
-@RequestScope
+@SessionScope
 public class Student {
     private String name;
-
 }
