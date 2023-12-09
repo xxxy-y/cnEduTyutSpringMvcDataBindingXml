@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--    开启配置文件形式的自动扫描，Spring会自动扫描cn.edu.tyut.cnedutyutspringmvc包及其子包下的Java类，如果带有@Service、@Controller、@Response等注解，则把这些类注册为Bean并存放进IOC容器中-->
+    <context:component-scan base-package="cn.edu.tyut.controller"/>
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--        最终视图的地址为: 视图页面的前缀 + 逻辑视图名 + 视图页面的后缀-->
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <!--    配置类型转换器工厂-->
+<!--    <bean id="converterService" class="org.springframework.context.support.ConversionServiceFactoryBean">-->
+        <!--        给工厂注入一个新的类型转换器-->
+<!--        <property name="converters">-->
+            <!--            可以注入多个类型转换器-->
+<!--            <array>-->
+                <!--                配置自定义类型转换器-->
+<!--                <bean class="cn.edu.tyut.convert.DataConvert"/>-->
+<!--            </array>-->
+<!--        </property>-->
+<!--    </bean>-->
+    <!--    装载类型转换器-->
+<!--    <mvc:annotation-driven conversion-service="converterService"/>-->
+<!--    注解方式的类型转换依赖注解驱动的支持，配置文件中必须显式定义<mvc:annotation-driven/>-->
+    <mvc:annotation-driven />
+</beans>
