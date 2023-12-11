@@ -30,7 +30,8 @@
     <!--    注解方式的类型转换依赖注解驱动的支持，配置文件中必须显式定义<mvc:annotation-driven/>-->
     <mvc:annotation-driven/>
 <!--    配置静态资源访问路径-->
-    <mvc:resources mapping="/WEB-INF/js/**" location="/WEB-INF/js/"/>
+<!--    <mvc:resources mapping="/WEB-INF/js/**" location="/WEB-INF/js/"/>-->
+<!--    也可以配置静态资源访问路径，它是只要请求到静态资源都会放行-->
     <mvc:default-servlet-handler/>
     <!--使用<bean>元素配置JSON转换器,需要同时配置处理器映射器和处理器适配器,并且JSON转换器应配置在适配器中-->
 <!--    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>-->
