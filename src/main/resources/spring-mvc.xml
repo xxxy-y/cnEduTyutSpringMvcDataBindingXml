@@ -64,4 +64,19 @@
         <!-- 定义在异常处理页面中获取异常信息的变量名，默认名为exception，这里我定义为exceptionValue -->
         <property name="exceptionAttribute" value="exceptionValue"/>
     </bean>
+
+<!--    配置拦截器-->
+    <mvc:interceptors>
+        <!-- CustomInterceptor01拦截器会拦截所有请求 -->
+        <!-- 多个拦截器会按照拦截器的配置顺序来执行 -->
+        <bean class="cn.edu.tyut.interceptor.CustomInterceptor01"/>
+        <!-- CustomInterceptor02拦截器只会拦截指定路径的请求 -->
+        <!-- 子元素必须按照以下代码的配置顺序进行编写-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:mapping path="/home"/>
+            <mvc:exclude-mapping path="/home/index"/>
+            <bean class="cn.edu.tyut.interceptor.CustomInterceptor02"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
