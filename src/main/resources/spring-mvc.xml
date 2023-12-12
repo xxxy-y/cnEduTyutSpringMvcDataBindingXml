@@ -9,6 +9,7 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
     <!--    开启配置文件形式的自动扫描，Spring会自动扫描cn.edu.tyut.cnedutyutspringmvc包及其子包下的Java类，如果带有@Service、@Controller、@Response等注解，则把这些类注册为Bean并存放进IOC容器中-->
     <context:component-scan base-package="cn.edu.tyut.controller"/>
+    <context:component-scan base-package="cn.edu.tyut.handler"/>
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!--        最终视图的地址为: 视图页面的前缀 + 逻辑视图名 + 视图页面的后缀-->
         <property name="prefix" value="/WEB-INF/pages/"/>
@@ -42,4 +43,25 @@
 <!--            </list>-->
 <!--        </property>-->
 <!--    </bean>-->
+
+<!--    注入SimpleMappingExceptionResolver-->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <!-- 定义需要特殊处理的异常，用类名或者完全路径名作为key，对应的异常页面名作为值，将不同的异常映射到不同的页面 -->
+        <property name="exceptionMappings">
+            <props>
+                <!-- 使用完全路径名作为key -->
+                <prop key="java.lang.NullPointerException">
+                    nullPointerException
+                </prop>
+                <!-- 使用类名作为key -->
+                <prop key="IOException">
+                    IOException
+                </prop>
+            </props>
+        </property>
+        <!-- 为所有的异常定义默认的异常处理页面，value作为默认的异常处理页面 -->
+        <property name="defaultErrorView" value="defaultException"/>
+        <!-- 定义在异常处理页面中获取异常信息的变量名，默认名为exception，这里我定义为exceptionValue -->
+        <property name="exceptionAttribute" value="exceptionValue"/>
+    </bean>
 </beans>
